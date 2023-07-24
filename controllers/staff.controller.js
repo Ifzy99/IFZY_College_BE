@@ -1,4 +1,5 @@
 const staffModel = require("../models/staff.model");
+let jwt = require("jsonwebtoken");
 
 
 const getStaffSignUp = (req, res)=>{
