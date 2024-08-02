@@ -1,6 +1,6 @@
 const express = require('express')
+const dotenv = require("dotenv")
 const app = express()
-require('dotenv').config()
 const schPort = process.env.PORT
 const cors = require('cors')
 const  mongoose  = require('mongoose')
@@ -9,11 +9,16 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 const SCH_URI = process.env.URI
 
-const studentRoute = require('./routes/student.route')
-app.use('/', studentRoute)
+//Load env variables
+dotenv.config({ path: "./config/config.env"})
 
-const staffRoute = require('./routes/staff.route')
-app.use('/staff', staffRoute)
+//Route files
+const students = require('./routes/students')
+const staffs = require('./routes/staffs')
+
+//Mount routes
+app.use("api/v1/students", students);
+app.use("api/v1/staffs", staffs);
 
 mongoose.connect(SCH_URI)
   .then(()=>{

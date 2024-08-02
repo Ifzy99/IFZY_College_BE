@@ -1,5 +1,5 @@
 const express = require('express')
-const { getStaffSignUp, postStaffSignUp, getStaffSignIn, postStaffSignIn } = require('../controllers/staff.controller')
+const { getStaffSignUp, postStaffSignUp, getStaffSignIn, postStaffSignIn } = require('../controllers/staff')
 const router = express.Router()
 
 

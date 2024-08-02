@@ -1,13 +1,14 @@
 {
-  "name": "schoolserver-db",
+  "name": "codecrafters_academy",
   "version": "1.0.0",
-  "description": "",
+  "description": "CodeCrafters_Academy backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "Set NODE_ENV=production && node server",
+    "dev": "nodemon server"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ifzy99",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
