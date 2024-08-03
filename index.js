@@ -1,21 +1,33 @@
 const express = require('express');
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const app = express()
-const schPort = process.env.PORT
+const colors = require("colors")
 const cors = require('cors')
-const  mongoose  = require('mongoose')
-app.use(cors())
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
-// const SCH_URI = process.env.URI
+const connectDB = require('./config/db');
+
 
 //Load env variables
-dotenv.config({ path: "./config/config.env"})
+dotenv.config({ path: "./config/config.env"});
+
+//Connect to database
+connectDB();
+
 
 //Route files
 const students = require('./routes/students');
 const staffs = require('./routes/staffs');
+
+// Initialize the app variable
+const app = express();
+
+// Use middleware
+app.use(cors());
+
+//Body Parser
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
 
 ///Dev logging middleware
 if(process.env.NODE_ENV === "development"){
@@ -26,17 +38,18 @@ if(process.env.NODE_ENV === "development"){
 app.use("api/v1/students", students);
 app.use("api/v1/staffs", staffs);
 
-// mongoose.connect(SCH_URI)
-//   .then(()=>{
-//     console.log("Mongoose has been Mongoosed");
-//   })
-//   .catch((err)=>{
-//     console.log(err)
-//   })
 
 
+const PORT = process.env.PORT
 
-  
-// app.listen(schPort, ()=>{
-//     console.log(`school server has started at ${schPort}`);
-// })
+const server = 
+app.listen(PORT, (
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold)
+));
+
+//Handle Unhandled Promise Rejection
+process.on("unhandledRejection",(err, promise) => {
+  console.log(`Error: ${err.message}`.red);
+//Close server & exit process
+server.close(() => process.exit(1));    
+ });
