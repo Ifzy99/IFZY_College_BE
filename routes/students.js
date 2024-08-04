@@ -1,10 +1,11 @@
 const express = require('express')
-const {getStudents } = require("../controllers/Student")
+const {getStudents, register } = require("../controllers/student")
 // const { getStudentSignUp, postStudentSignUp, postStudentSignIn, getStudentSignIn, getStudentInformation, postUpdate } = require('../controllers/student.controller')
 const router = express.Router()
 
 
 router.route("/").get(getStudents)
+                 .post(register)
 
 router.route("/:id")
 

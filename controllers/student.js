@@ -1,6 +1,31 @@
-exports.getStudents = (req, res, next )=>{
-     
-}
+const asyncHandler = require("../middleware/async");
+const Student = require ("../models/Student")
+
+exports.getStudents = asyncHandler( async (req, res, next )=>{ 
+    const students = await Student.find();
+    res.status(200).json({success:true, data:students});
+
+    res.status(400).json({success:false, message:error.message});
+})        
+            
+
+
+
+//@desc      Register
+//@route     POST /api/v1/register
+//@access    Public
+exports.register = asyncHandler(async (req, res, next) => {
+    const { name, email, password, phone } = req.body;
+    //Create user
+    const student = await Student.create({ name, email, phone, password });
+    res.status(201).json({ success: true, data: student });
+
+
+    res.status(400).json({ success: false, error: err.message });
+
+});
+            
+
 
 
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const errorHandler = require("./middleware/error")
 const colors = require("colors")
 const cors = require('cors')
 const connectDB = require('./config/db');
@@ -37,6 +38,8 @@ if(process.env.NODE_ENV === "development"){
 //Mount routes
 app.use("api/v1/students", students);
 app.use("api/v1/staffs", staffs);
+
+app.use(errorHandler);
 
 
 
