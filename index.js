@@ -26,7 +26,7 @@ app.use(cors());
 
 //Body Parser
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:false}));
 
 
 
@@ -36,14 +36,14 @@ if(process.env.NODE_ENV === "development"){
 }
 
 //Mount routes
-app.use("api/v1/students", students);
-app.use("api/v1/staffs", staffs);
+app.use("/api/students", students);
+app.use("/api/staffs", staffs);
 
 app.use(errorHandler);
 
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8000
 
 const server = 
 app.listen(PORT, (
