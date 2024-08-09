@@ -1,22 +1,15 @@
-const express = require('express')
-const {getStudents, registerStudents,loginStudent} = require("../controllers/studentController");
-// const { getStudentSignUp, postStudentSignUp, postStudentSignIn, getStudentSignIn, getStudentInformation, postUpdate } = require('../controllers/student.controller')
-const router = express.Router()
+const express = require('express');
+const {registerStudents,loginStudent, getMe} = require("../controllers/studentController");
+
+const router = express.Router();
+
+const {protect} = require("../middleware/auth")
 
 
 
-router.post("/register", registerStudents);
-router.post("/login", loginStudent);
+router.route("/register").post( registerStudents);
+router.route("/login").post(loginStudent);
+router.route("/me").get(protect, getMe);
 
 
-
-// router.get ('/', getStudentSignUp)
-// router.get('/studentSignIn', getStudentSignIn)
-
-// router.post('/student/SignUp', postStudentSignUp)
-// router.post('/Student/SignIn', postStudentSignIn)
-// router.get('/student_info', getStudentInformation)
-// router.post('/update_info', postUpdate)
-
-
-module.exports = router
+module.exports = router;

@@ -33,8 +33,8 @@ exports.registerStudents = asyncHandler(async (req, res, next) => {
     const student = await Student.create({ 
         name, 
         email, 
-        phone, 
-        password:hashedPassword 
+        password:hashedPassword ,
+        phone
     });
 
        if(student){
@@ -84,6 +84,20 @@ exports.loginStudent = asyncHandler(async (req, res, next) => {
             });
 
 })
+
+
+//@desc      Get current student
+//@route     GET/api/students/me
+//@access    Private
+exports.getMe = asyncHandler(async (req, res, next) => {
+    const student = { 
+        id:req.student._id,
+        email:req.student.email,
+        name:req.student.name,
+    }
+    res.status(200).json({success:true, data:student})
+})
+
 
 //Generate token
 const generateToken = (id) => {
