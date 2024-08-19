@@ -1,8 +1,11 @@
+const path = require("path");
 const express = require('express');
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const errorHandler = require("./middleware/error")
-const colors = require("colors")
+const errorHandler = require("./middleware/error");
+const colors = require("colors");
+const fileupload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
 const cors = require('cors')
 const connectDB = require('./config/db');
 
@@ -15,8 +18,10 @@ connectDB();
 
 
 //Route files
+const programmes = require("./routes/programmes")
 const students = require('./routes/students');
-const staffs = require('./routes/staffs');
+const courses = require("./routes/courses")
+const auth = require('./routes/auth');
 
 // Initialize the app variable
 const app = express();
@@ -28,6 +33,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
+//Cookie Parser
+app.use(cookieParser());
+
 
 
 ///Dev logging middleware
@@ -35,9 +43,17 @@ if(process.env.NODE_ENV === "development"){
   app.use(morgan("dev"));
 }
 
+//File uploading
+app.use(fileupload());
+
+//Set static folder
+app.use(express.static(path.join(__dirname, "public")));
+
 //Mount routes
+app.use("/api/programmes", programmes)
 app.use("/api/students", students);
-app.use("/api/staffs", staffs);
+app.use("/api/courses", courses);
+app.use("/api/auth", auth);
 
 app.use(errorHandler);
 
