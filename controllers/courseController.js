@@ -56,6 +56,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
 //access  Private
 exports.addCourse = asyncHandler(async (req, res, next) => {
     req.body.programme = req.params.programmeId;
+    req.body.user = req.user.id;
 
     const programme = await Programme.findById(req.params.programmeId)
 
@@ -73,6 +74,68 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({ success: true, data: course });
 });
+
+
+
+// @desc      Attach staff to course
+// @route     PUT /api/courses/:id/addStaff
+// @access    Private (Staff Only)
+exports.addStaffToCourse = asyncHandler(async (req, res, next) => {
+  const course = await Course.findById(req.params.id)
+
+  if (!course) {
+    return next(new ErrorResponse(`Course not found with id of ${req.params.id}`, 404));
+  }
+
+  // Check if the user has the 'staff' role
+  if (req.user.role !== 'staff') {
+    return next(
+      new ErrorResponse('Only staff members can be attached to courses', 403)
+    );
+  }
+
+  // Attach the staff to the course
+  course.staff = req.user.id;
+
+  await course.save();
+
+  res.status(200).json({ success: true, data: course });
+})
+
+
+
+
+// @desc      Enroll student in course
+// @route     PUT /api/courses/:id/enroll
+// @access    Private (Student Only)
+exports.enrollStudentInCourse = asyncHandler(async (req, res, next) => {
+
+  const course = await Course.findById(req.params.id);
+
+  if (!course) {
+    return next(new ErrorResponse(`Course not found with id of ${req.params.id}`, 404))
+    }
+
+    // Check if the user has the 'student' role
+      if (req.user.role !== 'student') {
+        return next(
+          new ErrorResponse('Only students can enroll in courses', 403)
+        );
+      }
+
+      // Check if the user is already enrolled in the course
+      if (course.students.includes(req.user.id)) {
+        return next(new ErrorResponse('You are already enrolled in this course', 400))
+        }
+
+        // Add the user to the enrolledStudents array
+        course.students.push(req.user.id);
+        await course.save();
+
+        res.status(200).json({ success: true, data: course });
+      
+})
+
 
 
 

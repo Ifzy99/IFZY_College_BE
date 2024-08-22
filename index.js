@@ -17,11 +17,11 @@ dotenv.config({ path: "./config/config.env"});
 connectDB();
 
 
-//Route files
+//Import Route files
 const programmes = require("./routes/programmes")
-const students = require('./routes/students');
 const courses = require("./routes/courses")
 const auth = require('./routes/auth');
+const users = require('./routes/users');
 
 // Initialize the app variable
 const app = express();
@@ -51,9 +51,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Mount routes
 app.use("/api/programmes", programmes)
-app.use("/api/students", students);
 app.use("/api/courses", courses);
 app.use("/api/auth", auth);
+app.use("/api/users", users);
 
 app.use(errorHandler);
 

@@ -40,9 +40,9 @@ ProgrammeSchema = new mongoose.Schema({
     type: String,
     default: "no-photo.jpg",
   },
-  enrolledStudents:{
+  user:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Student',
+    ref: 'User',
   }
 },
 {

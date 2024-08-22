@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {getCourses, addCourse, getCourse, updateCourse, deleteCourse} = require("../controllers/courseController");
+const {getCourses, addCourse, getCourse, updateCourse, deleteCourse, enrollStudentInCourse, addStaffToCourse} = require("../controllers/courseController");
 
 const Course = require("../models/Course");
 
@@ -16,6 +16,12 @@ router.route("/").get(advancedResults(Course, {
     path: "programme",
     select: "name description"
 }), getCourses).post(protect, authorize("admin"), addCourse)
+
+// Enroll a student in a course
+router.route("/:id/enroll").put(protect, authorize("student"), enrollStudentInCourse);
+
+//Add staff to a course
+router.route("/:id/addStaff").put(protect, authorize("staff", "admin"), addStaffToCourse);
 
 router.route("/:id").get(getCourse).put(protect, authorize("staff", "admin"), updateCourse).delete(protect, authorize("staff", "admin"), deleteCourse)
 

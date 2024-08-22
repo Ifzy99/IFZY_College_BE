@@ -26,17 +26,22 @@ const CourseSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Programme',
         required: true
-      }
-    //   instructor: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Staff', // Reference to Staff model
-    //     required: true,
-    //  },
-    //   enrolledStudents: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Student',
-    //     required: true
-    //   },
+      },
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', 
+        required: true,
+     },
+     students: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
+    },
+  ],
+  staff: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
       
 },
 {
