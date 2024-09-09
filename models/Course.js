@@ -22,6 +22,10 @@ const CourseSchema = new mongoose.Schema({
         type: Boolean,
         default: false
       },
+      photo: {
+        type: String,
+        default: "no-photo.jpg",
+      },
       programme:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Programme',

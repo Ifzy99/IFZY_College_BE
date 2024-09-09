@@ -25,7 +25,7 @@ const programmes = JSON.parse(
   // Import into DB
 const importData = async () => {
     try {
-      await Programme.create(programmes);
+      // await Programme.create(programmes);
       await Course.create(courses);
       console.log("Data Imported...".green.inverse);
       process.exit();
@@ -37,7 +37,7 @@ const importData = async () => {
   // Delete Data
 const deleteData = async () => {
     try {
-      await Programme.deleteMany();    
+      // await Programme.deleteMany();    
       await Course.deleteMany();
       console.log("Data Destroyed...".red.inverse);
       process.exit();

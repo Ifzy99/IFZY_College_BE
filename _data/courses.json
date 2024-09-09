@@ -7,7 +7,7 @@
 		"tuition": 2000000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713a66ec8f2b88b8f830b8",
-		"user": "5d7a514b5d2c12c7449be045"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cb9c4ded7bcb480eaa1",
@@ -17,7 +17,7 @@
 		"tuition": 2000000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713995b721c3bb38c1f5d0",
-		"user": "5d7a514b5d2c12c7449be045"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cd2c4ded7bcb480eaa2",
@@ -27,7 +27,7 @@
 		"tuition": 50000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713995b721c3bb38c1f5d0",
-		"user": "5d7a514b5d2c12c7449be045"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{ 
 		"_id": "5d725ce8c4ded7bcb480eaa3",
@@ -37,7 +37,7 @@
 		"tuition": 100000,
 		"scholarhipsAvailable": true,
 		"programme": "5d725a4a7b292f5f8ceff789",
-		"user": "5d7a514b5d2c12c7449be045"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa4",
@@ -47,7 +47,7 @@
 		"tuition": 200000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713a66ec8f2b88b8f830b8",
-		"user": "5d7a514b5d2c12c7449be046"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa5",
@@ -57,7 +57,7 @@
 		"tuition": 150000,
 		"scholarhipsAvailable": true,
 		"programme": "5d713a66ec8f2b88b8f830b8",
-		"user": "5d7a514b5d2c12c7449be046"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa6",
@@ -67,7 +67,7 @@
 		"tuition": 100000,
 		"scholarhipsAvailable": true,
 		"programme": "5d725a4a7b292f5f8ceff789",
-		"student": "5c8a1d5b0190b214360dc031"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa7",
@@ -77,7 +77,7 @@
 		"tuition": 100000,
 		"scholarhipsAvailable": true,
 		"programme": "5d725a4a7b292f5f8ceff789",
-		"student": "5c8a1d5b0190b214360dc031"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa8",
@@ -87,7 +87,7 @@
 		"tuition": 150000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713a66ec8f2b88b8f830b8",
-		"user": "5c8a1d5b0190b214360dc031"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480eaa9",
@@ -97,7 +97,7 @@
 		"tuition": 100000,
 		"scholarhipsAvailable": false,
 		"programme": "5d725a4a7b292f5f8ceff789",
-		"user": "5c8a1d5b0190b214360dc032"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480ebb0",
@@ -107,7 +107,7 @@
 		"tuition": 50000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713995b721c3bb38c1f5d0",
-		"user": "5c8a1d5b0190b214360dc032"
+		"user": "66c64fc9367fa82ace59ef47"
 	},
 	{
 		"_id": "5d725cfec4ded7bcb480ebb1",
@@ -117,6 +117,6 @@
 		"tuition": 300000,
 		"scholarhipsAvailable": false,
 		"programme": "5d713a66ec8f2b88b8f830b8",
-		"user": "5c8a1d5b0190b214360dc032"
+		"user": "66c64fc9367fa82ace59ef47"
 	}
 ]

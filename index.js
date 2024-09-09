@@ -47,7 +47,7 @@ if(process.env.NODE_ENV === "development"){
 app.use(fileupload());
 
 //Set static folder
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 //Mount routes
 app.use("/api/programmes", programmes)
