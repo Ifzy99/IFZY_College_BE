@@ -1,8 +1,6 @@
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
-
-
-// const Student = require("../models/Student");
+const cloudinary = require('../config/cloudinary');
 const Programme = require("../models/Programme");
 const Course  = require("../models/Course");
 
@@ -185,6 +183,63 @@ exports.deleteCourse = asyncHandler(async (req, res, next) => {
       data: {}
     });
   });
+
+
+
+// @desc      Upload photo for course
+// @route     PUT /api/courses/:id/photo
+// @access    Private
+exports.coursePhotoUpload = asyncHandler(async (req, res, next) => {
+  const course = await Course.findById(req.params.id);
+
+  if (!course) {
+    return next(new ErrorResponse(`Course not found with id of ${req.params.id}`, 404));
+  }
+
+  // Check if file is provided
+  if (!req.files || !req.files.file) {
+    return next(new ErrorResponse('Please upload a file', 400));
+  }
+
+  const file = req.files.file;
+
+  // Make sure the image is a photo
+  if (!file.mimetype.startsWith('image')) {
+    return next(new ErrorResponse('Please upload an image file', 400));
+  }
+
+  try {
+    // Upload to Cloudinary using the file buffer (binary data)
+    const result = await cloudinary.uploader.upload_stream(
+      {
+        folder: 'courses', // Optional folder in Cloudinary
+        public_id: `photo_${course._id}`, // Custom filename
+      },
+      (error, result) => {
+        if (error) {
+          console.error('Cloudinary error:', error);
+          return next(new ErrorResponse('Problem with file upload', 500));
+        }
+
+        // Update programme with the new photo URL
+        Course.findByIdAndUpdate(req.params.id, { photo: result.secure_url })
+          .then(() => {
+            res.status(200).json({
+              success: true,
+              data: result.secure_url,
+            });
+          })
+          .catch((err) => {
+            console.error('Database update error:', err);
+            return next(new ErrorResponse('Problem with database update', 500));
+          });
+      }
+    ).end(file.data); // Use `file.data` for buffer data
+  } catch (err) {
+    console.error(err);
+    return next(new ErrorResponse('Problem with file upload', 500));
+  }
+});
   
 
 

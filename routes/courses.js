@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {getCourses, addCourse, getCourse, updateCourse, deleteCourse, enrollStudentInCourse, addStaffToCourse} = require("../controllers/courseController");
+const {getCourses, addCourse, getCourse, updateCourse, deleteCourse, enrollStudentInCourse, addStaffToCourse, coursePhotoUpload} = require("../controllers/courseController");
 
 const Course = require("../models/Course");
 
@@ -10,6 +10,8 @@ const advancedResults = require("../middleware/advancedResults");
 
 
 const {protect, authorize} = require("../middleware/auth");
+
+router.route("/:id/photo").put(protect, authorize("admin"), coursePhotoUpload);
 
 
 router.route("/").get(advancedResults(Course, {

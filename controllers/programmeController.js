@@ -84,55 +84,6 @@ exports.deleteProgramme = asyncHandler(async (req, res, next) => {
 })
 
 
-// // @desc      Upload photo for programme
-// // @route     PUT /api/programmes/:id/photo
-// // @access    Private
-// exports.programmePhotoUpload = asyncHandler(async (req, res, next) => {
-//     const programme = await Programme.findById(req.params.id);
-
-//     if (!programme) {
-//         return next(new ErrorResponse(`Programme not found with id of ${req.params.id}`, 404
-//             ));
-//             }
-
-//             // Check if file is provided
-//             if (!req.files) {
-//                 return next(new ErrorResponse(`Please upload a file`, 400));
-//                 }
-
-//                 const file = req.files.file;
-
-//                 //Make sure the image is a photo
-//                 if (!file.mimetype.startsWith('image')) {
-//                     return next(new ErrorResponse('Please upload an image file', 400));
-//                     }
-
-//                     //Check filesize
-//                     if (file.size > process.env.MAX_FILE_UPLOAD) {
-//                         return next(new ErrorResponse(`Please upload an image that is less than ${process.env.MAX_FILE_UPLOAD}`, 400
-//                             ));
-//                             }
-//                             //Create custom filename
-//                             filename = `photo_${programme._id}${path.parse(file.name).ext}`;
-
-//                             file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
-//                                 if (err) {
-//                                   console.error(err);
-//                                   return next(new ErrorResponse(`Problem with file upload`, 500));
-//                                 }
-
-//                                 await Programme.findByIdAndUpdate(req.params.id, {photo:
-//                                     `/uploads/${filename}`
-//                                 });
-
-//                                 res.status(200).json({
-//                                     success: true,
-//                                     data: `/uploads/${file.name}`
-//                                   });
-//                                 });
-
-// })
-
 
 // @desc      Upload photo for programme
 // @route     PUT /api/programmes/:id/photo
